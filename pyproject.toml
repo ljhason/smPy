@@ -1,0 +1,19 @@
+[project]
+name = "example_package_YOUR_USERNAME_HERE"
+version = "0.0.1"
+authors = [
+  { name="Lily Anderson", email="lily.jian.hua.anderson@gmail.com" },
+]
+description = "An all-in-one software package for the analysis and visualisation of single molecule images"
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+license = "MIT"
+license-files = ["LICEN[CS]E*"]
+
+[project.urls]
+Homepage = "https://github.com/ljhason/smPy"
+User Guide = "https://github.com/ljhason/smPy-UserGuide"
