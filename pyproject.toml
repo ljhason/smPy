@@ -1,5 +1,12 @@
+[build-system]
+requires = [
+  "setuptools>=42",
+  "wheel"
+]
+build-backend = "setuptools.build_meta"
+
 [project]
-name = "example_package_YOUR_USERNAME_HERE"
+name = "smPy"
 version = "0.0.1"
 authors = [
   { name="Lily Anderson", email="lily.jian.hua.anderson@gmail.com" },
@@ -16,4 +23,4 @@ license-files = ["LICEN[CS]E*"]
 
 [project.urls]
 Homepage = "https://github.com/ljhason/smPy"
-User Guide = "https://github.com/ljhason/smPy-UserGuide"
+Guide = "https://github.com/ljhason/smPy-UserGuide"
