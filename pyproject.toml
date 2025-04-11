@@ -21,6 +21,14 @@ classifiers = [
 license = "MIT"
 license-files = ["LICEN[CS]E*"]
 
+dependencies = [
+  "numpy>=1.21",
+  "opencv-python>=4.5",
+  "matplotlib>=3.5",
+  "scikit-image>=0.18",
+  "Pillow>=8.0",  
+]
+
 [project.urls]
 Homepage = "https://github.com/ljhason/smPy"
 Guide = "https://github.com/ljhason/smPy-UserGuide"
