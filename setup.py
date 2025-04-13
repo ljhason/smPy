@@ -5,7 +5,7 @@ with open("README.md", "r") as f:
 
 setup(
     name = "smPy",
-    version = "0.0.6",
+    version = "0.0.7",
     description = "An all-in-one software package for the analysis and visualisation of single molecule images",
     package_dir= {"" : "src"},
     packages = find_packages(where="src"),
@@ -20,15 +20,15 @@ setup(
         "Operating System :: OS Independent",
     ],
     install_requires = [
-        "numpy>=1.21",
-        "imageio>=2.9",
-        "imageio-ffmpeg>=2.9",
+        "numpy",
+        "imageio",
+        "imageio-ffmpeg",
         "matplotlib>=3.5",
-        "scikit-image>=0.18",
-        "Pillow>=8.0",  
+        "scikit-image",
+        "Pillow",  
     ],
     extras_require = {
         "dev": ["twine>=4.0.2"],
 },
-    python_requires = ">=3.6"
+    python_requires = ">=3.7"
 )
