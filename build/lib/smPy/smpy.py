@@ -1,6 +1,6 @@
 import os
 import matplotlib.pyplot as plt
-import cv2
+import imageio.v2 as imageio
 from PIL import Image
 from skimage import io
 from matplotlib import patches
@@ -9,7 +9,7 @@ from matplotlib.ticker import MultipleLocator
 from utils import (
     read_pma, 
     avg_frame_arr,
-    find_peaks_scipy_IDL,
+    find_peaks,
     shift_peaks,
     draw_circle,
     SG_background_subtraction,
@@ -58,18 +58,17 @@ def generate_mp4(images_path, fps=100):
             
         images = [img for img in os.listdir(images_path) if img.endswith(".png")]
         images.sort(key=lambda x: int(x.split("_")[1].split(".")[0]))
-        frame = cv2.imread(os.path.join(images_path, images[0]))
-        height, width,_ = frame.shape
-        video = cv2.VideoWriter(os.path.join(video_file, video_name), cv2.VideoWriter_fourcc(*'mp4v'), fps, (width, height))
+        out_path = os.path.join(video_file, video_name)
+        writer = imageio.get_writer(out_path, fps=fps)
 
         for image in images:
-            video.write(cv2.imread(os.path.join(images_path, image)))
+            img_path = os.path.join(images_path, image)
+            frame = imageio.imread(img_path)
+            writer.append_data(frame)
 
-        video.release()
-        cv2.destroyAllWindows()
-
-        print(f"Video sucessfully generated and saved as: {video_name}")
-        print(f"Images: {(images)}")
+        writer.close()
+        print(f"Video sucessfully generated and saved as: {out_path}")
+        print(f"Images: {(images[:5])}...{(images[-5:])}")
     
     except Exception as e:
         print(f"Error generating video: {e}")
@@ -107,29 +106,30 @@ def dim_to_3(image):
     return np.stack((image,) * 3, axis=-1)
 
 
-def good_peak_finder(image_path, sigma=3, block_size=16, scaler_percent=32, boarder=10, max_rad=3):
+def filter_peaks(image_path, sigma=3, block_size=16, scaler_percent=32, boarder=10, max_rad=3):
     """
     From a grayscale image, finds all peaks bright spots in the image using a local maximum filter and filters out the peaks that are too close to the edges and whose radius is larger than max_rad.
     """
-    peaks_coords_IDL, image_2 = find_peaks_scipy_IDL(image_path, sigma, block_size, scaler_percent)
-    large_peaks = []
-    correct_size_peaks = []
+    peaks_coords_IDL, image_2 = find_peaks(image_path, sigma, block_size, scaler_percent)
+    bad_peaks = []
+    good_peaks = []
     height, width = io.imread(image_path).shape
 
     for peak in peaks_coords_IDL:
         y, x = peak
         
         if y < boarder or y > height - boarder or x < boarder or x > width - boarder:
-            large_peaks.append(peak)
-        elif image_2[y, x + max_rad+1] > 0 or image_2[y, x - max_rad] > 0 or image_2[y+max_rad+1, x ] > 0 or image_2[y-max_rad, x] > 0 or peak[0] < boarder or peak[0] > height - boarder or peak[1] < boarder or peak[1] > width - boarder:
-            large_peaks.append(peak)
+            bad_peaks.append(peak)
+        elif image_2[y, x + max_rad+1] > 0 or image_2[y, x - max_rad] > 0 or image_2[y+max_rad+1, x ] > 0 or image_2[y-max_rad, x] > 0:
+            bad_peaks.append(peak)
         else:
-            correct_size_peaks.append(peak)
+            good_peaks.append(peak)
 
-    correct_size_peaks = np.array(correct_size_peaks)
-    large_peaks = np.array(large_peaks)
+    good_peaks = np.array(good_peaks)
+    bad_peaks = np.array(bad_peaks)
     
-    return correct_size_peaks, large_peaks
+    return good_peaks, bad_peaks
+
 
 def find_pairs(peaks_1, peaks_2, tolerance=1, Channel_count=2, shift=[0,0]):
     """
