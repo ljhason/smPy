@@ -1,0 +1,11 @@
+LICENSE
+README.md
+setup.py
+src/smPy/__init__.py
+src/smPy/smpy.py
+src/smPy/utils.py
+src/smPy.egg-info/PKG-INFO
+src/smPy.egg-info/SOURCES.txt
+src/smPy.egg-info/dependency_links.txt
+src/smPy.egg-info/requires.txt
+src/smPy.egg-info/top_level.txt
