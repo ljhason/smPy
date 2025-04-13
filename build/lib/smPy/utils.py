@@ -35,7 +35,7 @@ def avg_frame_arr(pma_file_path):
         print(f"Error generating average frame: {e}")
         return None
 
-def find_peaks_scipy_IDL(image_path, sigma=3, block_size=16, scaler_percent=32):
+def find_peaks(image_path, sigma=3, block_size=16, scaler_percent=32):
     """
     From a grayscale image, finds all peaks bright spots in the image using a local maximum filter.
     """

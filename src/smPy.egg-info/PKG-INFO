@@ -1,6 +1,6 @@
 Metadata-Version: 2.4
 Name: smPy
-Version: 0.0.4
+Version: 0.0.6
 Summary: An all-in-one software package for the analysis and visualisation of single molecule images
 Home-page: https://github.com/ljhason/smPy
 Author: Lily Anderson
@@ -12,7 +12,8 @@ Requires-Python: >=3.6
 Description-Content-Type: text/markdown
 License-File: LICENSE
 Requires-Dist: numpy>=1.21
-Requires-Dist: opencv-python>=4.5
+Requires-Dist: imageio>=2.9
+Requires-Dist: imageio-ffmpeg>=2.9
 Requires-Dist: matplotlib>=3.5
 Requires-Dist: scikit-image>=0.18
 Requires-Dist: Pillow>=8.0
