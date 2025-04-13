@@ -5,7 +5,7 @@ with open("README.md", "r") as f:
 
 setup(
     name = "smPy",
-    version = "0.0.1",
+    version = "0.0.3",
     description = "An all-in-one software package for the analysis and visualisation of single molecule images",
     package_dir= {"" : "src"},
     packages = find_packages(where="src"),
