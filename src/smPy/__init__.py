@@ -11,9 +11,9 @@ from smpy import (
     plot_circle, 
     init_annot, 
     print_coords_trigger, 
-    on_hover, 
-    on_hover_intensity, 
-    on_hover_intensity_merged, 
+    interactive_zoom, 
+    interactive_2CH_plots, 
+    interactive_2CH_plots_merged, 
     display_time_series, 
     find_polyfit_params_3CH, 
     find_trip)
