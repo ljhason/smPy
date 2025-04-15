@@ -688,8 +688,7 @@ def find_trip(peaks_1, mapped_CH2, mapped_CH3, tolerance=4, shift_CH2=[0,0], shi
     return len(out_pair_arr_CH1), out_pair_arr_CH1, out_pair_arr_CH2, out_pair_arr_CH3
 
 
-
-def display_three_plots(event, pma_file_path, fig, ax, scatter_data, y_centre_arr, x_centre_arr, image_3d, image_orig, mask, radius=4, tpf=1/100, R_0_1=5.6, R_0_2=5.6, time_interval=10, intensity_interval=500, FRET_interval=0.2, distance_1_interval=0.5, distance_2_interval=0.2, zoom_size=5, background_treatment="None", CH_consideration=False, Intense_axes=[0.48, 0.81, 0.5, 0.15], FRET_axes = [0.48, 0.56, 0.5, 0.15], distance_axes_1=[0.48, 0.31, 0.5, 0.15], distance_axes_2=[0.48, 0.06, 0.5, 0.15],  CH1_zoom_axes=[0.0005, 0.05, 0.15, 0.15], CH2_zoom_axes=[0.135, 0.05, 0.15, 0.15], CH3_zoom_axes=[0.27, 0.05, 0.15, 0.15]):
+def interactive_3CH_plots(event, pma_file_path, fig, ax, scatter_data, y_centre_arr, x_centre_arr, image_3d, image_orig, mask, radius=4, tpf=1/100, R_0_1=5.6, R_0_2=5.6, time_interval=10, intensity_interval=500, FRET_interval=0.2, distance_1_interval=0.5, distance_2_interval=0.2, zoom_size=5, background_treatment="None", CH_consideration=False, Intense_axes=[0.48, 0.81, 0.5, 0.15], FRET_axes = [0.48, 0.56, 0.5, 0.15], distance_axes_1=[0.48, 0.31, 0.5, 0.15], distance_axes_2=[0.48, 0.06, 0.5, 0.15],  CH1_zoom_axes=[0.0005, 0.05, 0.15, 0.15], CH2_zoom_axes=[0.135, 0.05, 0.15, 0.15], CH3_zoom_axes=[0.27, 0.05, 0.15, 0.15]):
     """
     From a pma file, displays the time series of the total intensity in a circle of a specified radius centred on coordinates (y_centre, x_centre) for all channels.
     """
@@ -843,5 +842,6 @@ def display_three_plots(event, pma_file_path, fig, ax, scatter_data, y_centre_ar
 
     annot.set_visible(visible)
     fig.canvas.draw_idle()
+
 
     
